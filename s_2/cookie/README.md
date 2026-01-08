@@ -2,6 +2,25 @@
 
 A test to see how to use the cookiecutter template for a small project
 
+## How to run
+From the root directory you can train a model
+    uvx invoke train -l [LEARNING RATE] -e [NUM EPOCHS]
+
+Evaluate the model
+    uvx invoke evaluate
+
+Visulaize the model architecture
+    uvx invoke show-model
+
+Make visualization figure
+    uvx invoke visualization -f [SAVE_FNAME] -e [flag]
+
+    -e should be either 'f' or 't'
+    'f' : Makes figure of the last convolutional layer summed over channels
+    'e' : Maked figure of clusters based on pca and embedding from last layer
+
+
+
 ## Project structure
 
 The directory structure of the project looks like this:

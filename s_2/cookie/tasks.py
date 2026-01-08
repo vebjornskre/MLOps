@@ -13,9 +13,24 @@ def preprocess_data(ctx: Context) -> None:
     ctx.run(f"uv run src/{PROJECT_NAME}/data.py data/raw data/processed", echo=True, pty=not WINDOWS)
 
 @task
-def train(ctx: Context) -> None:
-    """Train model."""
-    ctx.run(f"uv run src/{PROJECT_NAME}/train.py", echo=True, pty=not WINDOWS)
+def train(ctx: Context, lr=0.001, e=5):
+    cmd = f"uv run src/{PROJECT_NAME}/train.py --lr {lr} --e {e}"
+    ctx.run(cmd, echo=True, pty=not WINDOWS)
+
+@task
+def evaluate(ctx: Context, f='models/trained_model.pth'):
+    cmd = f'uv run src/{PROJECT_NAME}/evaluate.py {f}'
+    ctx.run(cmd, echo=True, pty=not WINDOWS)
+
+@task
+def show_model(ctx: Context) -> None:
+    cmd = f'uv run src/{PROJECT_NAME}/model.py'
+    ctx.run(cmd, echo=True, pty=not WINDOWS)
+
+@task
+def visualize(ctx: Context, fname='models/trained_model.pth', embed='t') -> None:
+    cmd = f'uv run src/{PROJECT_NAME}/visualize.py -f {fname} -e {embed}'
+    ctx.run(cmd, echo=True, pty=not WINDOWS)
 
 @task
 def test(ctx: Context) -> None:
