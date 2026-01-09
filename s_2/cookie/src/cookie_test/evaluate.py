@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 app = typer.Typer()
 
 @app.command()
-def evaluate(model_checkpoint: str) -> None:
+def evaluate(model_checkpoint: str = 'models/trained_model.pth') -> None:
     """Evaluate a trained model."""
     print("Evaluating like my life depends on it")
     print(model_checkpoint)
@@ -33,3 +33,5 @@ def evaluate(model_checkpoint: str) -> None:
 
 if __name__ == '__main__':
     app()
+
+    
